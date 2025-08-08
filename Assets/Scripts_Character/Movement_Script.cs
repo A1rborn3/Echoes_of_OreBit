@@ -4,18 +4,18 @@ public class Movement_Script : MonoBehaviour
 {
     public float thrustForce = 5f;
     public float rotationSpeed = 180f;
-    public float slowDownRate = 5f;  // How quickly to slow down velocity
-    public float slowDownRotationRate = 180f;  // How quickly to slow down rotation
+    public float slowDownRate = 5f;  //slow down velocity
+    public float slowDownRotationRate = 180f;  //slow down rotation
 
 
     private Rigidbody2D rb;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         // Rotate the ship
@@ -26,7 +26,7 @@ public class Movement_Script : MonoBehaviour
     void FixedUpdate()
     {
 
-            // Normal thrust input when space NOT pressed
+            // Normal thrust input
             float thrustInput = Input.GetAxis("Vertical"); // W = 1, S = -1
         if (thrustInput < 0)
         {

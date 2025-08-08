@@ -1,0 +1,16 @@
+Make more memory safe, remove old objects in favour of new with a hard limit for objects loaded. ideally save object positions somewhere so when it loads it has the same ones
+
+make diffrent kinds and have them randomise
+
+fix ship speeding and glitching issues
+
+make low chance to get clusters and higher chance to get just single peices
+
+find a way to do planets and astroids (maybe bigger chunks?, astroids take up multiple chunks?)
+
+make paralax effect in back ground
+
+
+obj todo
+give collisions 
+mineable

@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 5f;
     public Vector3 offset = new Vector3(0f, 0f, -10f);  // Ensure the camera stays behind the scene
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (target == null) return;
 

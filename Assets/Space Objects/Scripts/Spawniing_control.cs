@@ -13,6 +13,9 @@ public class SpawningControl : MonoBehaviour
     public int junkPerClusterMin = 5;
     public int junkPerClusterMax = 15;
     public float clusterRadius = 40f; //must be kept below half of chunk size to avoid overlap
+    public int JunkChancemax = 10; //higher the number lower the chace of cluster spawning // => 10% chance for cluster, 30% for small junk, 60% empty
+    public int SmallJunkChance = 4; //chance of spawning 1-3 peices (KEEP BELOW MAX+1) // number - 1 is the chance
+
 
     [Header("Spawning Control")] 
     public float chunkSize = 20f;
@@ -57,27 +60,46 @@ public class SpawningControl : MonoBehaviour
                 if (!spawnedChunks.Contains(chunkCoord)) //basically if new chunk
                 {
                     spawnedChunks.Add(chunkCoord);
-                    SpawnClusterAtChunk(chunkCoord);
+                    SpawnJunkAtChunk(chunkCoord);
                 }
             }
         }
     }
 
-    void SpawnClusterAtChunk(Vector2Int chunkCoord)
+    void SpawnJunkAtChunk(Vector2Int chunkCoord)
     {
         Vector2 clusterCenter = new Vector2(
             chunkCoord.x * chunkSize + chunkSize / 2f,
             chunkCoord.y * chunkSize + chunkSize / 2f
         );
 
-        int junkCount = Random.Range(junkPerClusterMin, junkPerClusterMax + 1); //random ammount
+        int JunkChance = Random.Range( 0, JunkChancemax);
 
-        for (int i = 0; i < junkCount; i++)
+        if (JunkChance == 1)
         {
-            Vector2 offset = Random.insideUnitCircle * clusterRadius; //ranodom pos
-            Vector2 spawnPos = clusterCenter + offset; 
-            Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));//random rotation
-            Instantiate(junkPrefab, spawnPos, rotation);
+            int ClusterjunkCount = Random.Range(junkPerClusterMin, junkPerClusterMax + 1); //random ammount
+
+            for (int i = 0; i < ClusterjunkCount; i++)
+            {
+                Vector2 offset = Random.insideUnitCircle * clusterRadius; //ranodom pos
+                Vector2 spawnPos = clusterCenter + offset;
+                Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));//random rotation
+                Instantiate(junkPrefab, spawnPos, rotation);
+            }
         }
+        else if (JunkChance < SmallJunkChance)
+        {
+            int ClusterjunkCount = Random.Range(1, 4); //random ammount between 1&3 inclusive
+
+            for (int i = 0; i < ClusterjunkCount; i++)
+            {
+                Vector2 offset = Random.insideUnitCircle * clusterRadius; //ranodom pos
+                Vector2 spawnPos = clusterCenter + offset;
+                Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));//random rotation
+                Instantiate(junkPrefab, spawnPos, rotation);
+            }
+        }
+
+        
     }
 }

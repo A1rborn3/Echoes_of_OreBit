@@ -491,6 +491,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &741273763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 741273765}
+  - component: {fileID: 741273764}
+  m_Layer: 0
+  m_Name: SystemSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &741273764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741273763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b190f168166abae42887be5e336d810a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starPrefab: {fileID: 2078960958641630579, guid: 7d4e0db36184f854d87791cc7a32d1c0, type: 3}
+  planetPrefabs:
+  - {fileID: 4176030847621473924, guid: 48d08bbbd00e5b04e82a779b34891337, type: 3}
+  - {fileID: 5903787695760937274, guid: 4a3b52a25f509384c85b11157c6600b1, type: 3}
+  minPlanets: 3
+  maxPlanets: 5
+  minSpawnRadius: 500
+  maxSpawnRadius: 2000
+  minDistanceBetweenPlanets: 500
+  spawnBuffer: 200
+  player: {fileID: 520513864}
+--- !u!4 &741273765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741273763}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.11811, y: -0.74729, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2085268974
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,4 +606,5 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 520513864}
+  - {fileID: 741273765}
   - {fileID: 2085268976}

@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Spawn_Galaxy : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class Spawn_Galaxy : MonoBehaviour
     public int maxStarsPerRing = 8;
     public float baseRingSpacing = 100f;
     public int ringCount = 5; //maybe change when upgraded
+    public float minStarSpacing = 10f;
+    private List<Vector2> starPositions = new List<Vector2>();
 
     void Start()
     {
@@ -31,6 +35,16 @@ public class Spawn_Galaxy : MonoBehaviour
                 Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
                 Vector2 position = (Vector2)homeStar.position + offset;
 
+                while (!IsPositionValid(position))
+                {
+                    angle = Random.Range(0f, Mathf.PI * 2f); // randomize position
+                    offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+                    position = (Vector2)homeStar.position + offset;
+                    //generate new position
+                }
+
+                starPositions.Add(position);
+
                 GameObject star = Instantiate(starPrefab, position, Quaternion.identity);
                 star.name = $"Star_Ring{ring}_#{i}";
 
@@ -51,5 +65,17 @@ public class Spawn_Galaxy : MonoBehaviour
 
             }
         }
+    }
+
+    bool IsPositionValid(Vector2 pos)
+    {
+        foreach (Vector2 existing in starPositions)
+        {
+            if (Vector2.Distance(pos, existing) < minStarSpacing)
+            {
+                return false; // too close
+            }
+        }
+        return true;
     }
 }

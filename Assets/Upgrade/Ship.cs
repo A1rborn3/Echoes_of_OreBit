@@ -16,6 +16,8 @@ public class Ship : MonoBehaviour
         if (lvl == 1)
         {
             ShipPixel.SetActive(true);
+
+            // Set upgrade abilities
         }
     }
 }

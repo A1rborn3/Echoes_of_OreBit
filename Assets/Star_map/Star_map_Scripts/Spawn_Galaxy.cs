@@ -1,17 +1,22 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.Overlays;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
 
 public class Spawn_Galaxy : MonoBehaviour
 {
     public GameObject starPrefab;
     public Transform homeStar;
+    public GameObject Highlight;
     public int minStarsPerRing = 4;
     public int maxStarsPerRing = 8;
     public float baseRingSpacing = 100f;
     public int ringCount = 5; //maybe change when upgraded
-    public float minStarSpacing = 10f;
+    public float minStarSpacing = 50f;
     private List<Vector2> starPositions = new List<Vector2>();
 
     void Start()
@@ -35,12 +40,16 @@ public class Spawn_Galaxy : MonoBehaviour
                 Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
                 Vector2 position = (Vector2)homeStar.position + offset;
 
-                while (!IsPositionValid(position))
+                int attempts = 0;
+                const int maxAttempts = 100;
+
+                while (!IsPositionValid(position) && attempts < maxAttempts)
                 {
                     angle = Random.Range(0f, Mathf.PI * 2f); // randomize position
                     offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
                     position = (Vector2)homeStar.position + offset;
                     //generate new position
+                    attempts++;
                 }
 
                 starPositions.Add(position);
@@ -53,6 +62,9 @@ public class Spawn_Galaxy : MonoBehaviour
                 {
                     data.System_Ring = ring;
                     data.System_name = star.name;
+                    string seedString = $"{ring:D2}{i:D2}"; //star seeds, format, ring 00, star 00. 1205 is ring 12 star 5
+                    data.Seed = int.Parse(seedString);
+                    data.Star_pos = position;
                 }
                 else
                 {
@@ -78,4 +90,40 @@ public class Spawn_Galaxy : MonoBehaviour
         }
         return true;
     }
+
+
+    //the following code controls the highlight to see current star system
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        
+        if (scene.name == "Star_map")
+        {
+           string starName = Data_Transfer.Star_name;
+            GameObject currentStar = GameObject.Find(starName);
+            if (currentStar != null && Highlight != null)
+            {
+                // Move highlight to star position
+                Highlight.transform.position = currentStar.transform.position;
+                Highlight.transform.position += Vector3.back * 0.1f; //moving behind star
+
+                Highlight.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning("Star or highlight not found!");
+                Highlight.SetActive(false); // hide if no star
+            }
+        }
+    }
+
 }

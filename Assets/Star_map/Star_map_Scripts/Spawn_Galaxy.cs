@@ -80,11 +80,8 @@ public class Spawn_Galaxy : MonoBehaviour
                 {
                     Debug.LogWarning("System_data component not found on star prefab!");
                 }
-
-                //seed transfer when i figure that out
-
-                
-
+                //running the distance update once all stars are loaded
+                Distance_Update();
             }
         }
     }
@@ -115,10 +112,10 @@ public class Spawn_Galaxy : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
+
         if (scene.name == "Star_map")
         {
-           string starName = Data_Transfer.Star_name;
+            string starName = Data_Transfer.Star_name;
             GameObject currentStar = GameObject.Find(starName);
             if (currentStar != null && Highlight != null)
             {
@@ -133,6 +130,43 @@ public class Spawn_Galaxy : MonoBehaviour
                 Debug.LogWarning("Star or highlight not found!"); //this will always run on first launch. ill code it out later
                 Highlight.SetActive(false); // hide if no star
             }
+            //calculate and assign distances
+            Distance_Update();
+
+
+
+        }
+    }
+
+    private void Distance_Update()
+    {
+        string starName = Data_Transfer.Star_name;
+        GameObject currentStar = GameObject.Find(starName);
+        System_data currentData = null;
+        if (currentStar != null)
+        {
+            currentData = currentStar.GetComponent<System_data>();
+        }
+
+        Vector2 playerPos; //finding most rencent star or home base
+
+        if (currentData != null)
+        {
+            playerPos = currentData.Star_pos;
+        }
+        else if (homeStar != null)
+        {
+            playerPos = homeStar.position;
+        }
+        else { playerPos = Vector3.zero; } //setting to 0 if somethings broken
+
+
+        System_data[] allStars = FindObjectsByType<System_data>(FindObjectsSortMode.None);
+        Debug.Log("fired ");
+        foreach (System_data star in allStars) //for every star edit data to shows distance from player
+        {
+            star.DistanceFromPlayer = Vector2.Distance(playerPos, star.Star_pos);
+            Debug.Log(star.System_name + " distance: " + star.DistanceFromPlayer);
         }
     }
 

@@ -6,4 +6,5 @@ public class System_data : MonoBehaviour
     public int Seed;
     public string System_name;
     public Vector2 Star_pos;
+    public float DistanceFromPlayer;
 }

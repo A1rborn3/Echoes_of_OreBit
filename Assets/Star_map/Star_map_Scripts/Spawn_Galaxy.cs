@@ -18,9 +18,19 @@ public class Spawn_Galaxy : MonoBehaviour
     public int ringCount = 5; //maybe change when upgraded
     public float minStarSpacing = 50f;
     private List<Vector2> starPositions = new List<Vector2>();
+    int seed = 1; //possible option to change seed in menu. save seed in files
+   
 
     void Start()
     {
+        // testing line 
+        seed = 100;
+        //testing line
+        if (seed == 1) //default meaning new save, save should update seed before this line
+        {
+            seed = Random.Range(100, 999); //ensuring a 3 digit seed, this will make things easier late prob
+        }
+        Random.InitState(seed);
         if (homeStar == null)
         {
             Debug.LogWarning("HomeStar not set! Creating temporary at origin.");
@@ -62,7 +72,7 @@ public class Spawn_Galaxy : MonoBehaviour
                 {
                     data.System_Ring = ring;
                     data.System_name = star.name;
-                    string seedString = $"{ring:D2}{i:D2}"; //star seeds, format, ring 00, star 00. 1205 is ring 12 star 5
+                    string seedString = $"{ring:D2}{i:D2}{seed}"; //star seeds, format, ring 00, star 00, seed 000. 1205100 is ring 12 star 5 seed 100
                     data.Seed = int.Parse(seedString);
                     data.Star_pos = position;
                 }
@@ -120,7 +130,7 @@ public class Spawn_Galaxy : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Star or highlight not found!");
+                Debug.LogWarning("Star or highlight not found!"); //this will always run on first launch. ill code it out later
                 Highlight.SetActive(false); // hide if no star
             }
         }

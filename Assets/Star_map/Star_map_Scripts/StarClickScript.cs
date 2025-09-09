@@ -14,8 +14,9 @@ public class StarClickScript : MonoBehaviour
 
         if (data != null)
         {
-            Data_Transfer.System_ring = data.System_Ring;  // assuming System_Ring is the variable in System_data
+            Data_Transfer.System_ring = data.System_Ring; 
             Data_Transfer.Star_name = gameObject.name;
+            Data_Transfer.current_star = data.Seed;
         }
         else
         {

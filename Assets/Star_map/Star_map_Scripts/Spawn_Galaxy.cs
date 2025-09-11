@@ -162,11 +162,9 @@ public class Spawn_Galaxy : MonoBehaviour
 
 
         System_data[] allStars = FindObjectsByType<System_data>(FindObjectsSortMode.None);
-        Debug.Log("fired ");
         foreach (System_data star in allStars) //for every star edit data to shows distance from player
         {
             star.DistanceFromPlayer = Vector2.Distance(playerPos, star.Star_pos);
-            Debug.Log(star.System_name + " distance: " + star.DistanceFromPlayer);
         }
     }
 

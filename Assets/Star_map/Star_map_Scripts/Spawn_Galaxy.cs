@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
 
-public class Spawn_Galaxy : MonoBehaviour
+public class Spawn_Galaxy : MonoBehaviour, ISaveable
 {
     public GameObject starPrefab;
     public Transform homeStar;
@@ -23,9 +23,6 @@ public class Spawn_Galaxy : MonoBehaviour
 
     void Start()
     {
-        // testing line 
-        seed = 100;
-        //testing line
         if (seed == 1) //default meaning new save, save should update seed before this line
         {
             seed = Random.Range(100, 999); //ensuring a 3 digit seed, this will make things easier late prob
@@ -167,5 +164,13 @@ public class Spawn_Galaxy : MonoBehaviour
             star.DistanceFromPlayer = Vector2.Distance(playerPos, star.Star_pos);
         }
     }
-
+    public void Save(SaveData data)
+    {
+        data.galaxySeed = seed;  //called on close
+    }
+    public void Load(SaveData data)
+    {
+        seed = data.galaxySeed;
+        //calld by gamemanager before launch 
+    }
 }

@@ -8,8 +8,9 @@ public class Laser : MonoBehaviour
     private Rigidbody2D rb;
     void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = transform.right * speed; // shoot along local X axis
+        rb.linearVelocity = transform.up * speed; //shoot out the front
         Destroy(gameObject, lifetime);
     }
 

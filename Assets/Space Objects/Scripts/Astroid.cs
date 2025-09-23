@@ -15,7 +15,11 @@ public class Astroid : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Die();
+        if (currentHealth < 0)
+        {
+            Die();
+        }
+        
     }
 
     void Die()

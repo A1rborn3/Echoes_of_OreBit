@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 520513863}
   - component: {fileID: 520513865}
   - component: {fileID: 520513866}
+  - component: {fileID: 520513867}
   m_Layer: 0
   m_Name: PlayerMain
   m_TagString: Untagged
@@ -468,8 +469,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -652955051
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 210585111408073199, guid: e94d10750cece9148a4ec68f483765b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -543,6 +544,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &520513867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520513862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ffd062bfeaeb348949decf9a4e1017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserPrefab: {fileID: 5085996976199491315, guid: 3870c39879342b64f81ef634dca6851f, type: 3}
+  Player: {fileID: 520513864}
+  fireRate: 0.5
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +596,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000003797b0eb55b214d9
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -651,7 +667,6 @@ MonoBehaviour:
   spawnBuffer: 200
   player: {fileID: 520513864}
   SystemRing: 0
-  SystemSeed: 0
 --- !u!1 &741273763
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +845,7 @@ GameObject:
   - component: {fileID: 801013120}
   - component: {fileID: 801013124}
   - component: {fileID: 801013125}
+  - component: {fileID: 801013126}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -955,6 +971,18 @@ MonoBehaviour:
   target: {fileID: 519420032}
   smoothSpeed: 5
   offset: {x: 0, y: 0, z: 10}
+--- !u!114 &801013126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801013119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6aadb1aeeb2ba44e9fc521a5e69435a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &939050865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,6 +1694,7 @@ MonoBehaviour:
   clusterRadius: 20
   JunkChancemax: 10
   SmallJunkChance: 4
+  JunkCount: 0
   chunkSize: 80
   chunkViewDistance: 1
 --- !u!4 &2085268976

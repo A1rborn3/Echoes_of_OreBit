@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceIdOverride: 
   amount: 1
-  rotateSpeed: 45
+  rotateSpeed: 0
 --- !u!61 &51267351
 BoxCollider2D:
   m_ObjectHideFlags: 0

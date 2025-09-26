@@ -48,6 +48,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ToHomeBaseScene()
     {
+        ResumeGame();
         SceneManager.LoadScene("Home");
     }
 }

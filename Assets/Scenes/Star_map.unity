@@ -151,10 +151,10 @@ MonoBehaviour:
   starPrefab: {fileID: 5151615820180311121, guid: 04919df2a9c1ecf4294ec724717d8469, type: 3}
   homeStar: {fileID: 1327491279}
   Highlight: {fileID: 7348367182785566875, guid: c1e310740da591f4090ebb0f9d7c41ab, type: 3}
-  minStarsPerRing: 4
-  maxStarsPerRing: 8
+  minStarsPerRing: 2
+  maxStarsPerRing: 5
   baseRingSpacing: 10
-  ringCount: 5
+  ringCount: 2
   minStarSpacing: 10
 --- !u!4 &363189629
 Transform:

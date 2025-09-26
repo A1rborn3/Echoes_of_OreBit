@@ -12,15 +12,15 @@ public class Spawn_Galaxy : MonoBehaviour, ISaveable
     public GameObject starPrefab;
     public Transform homeStar;
     public GameObject Highlight;
-    public int minStarsPerRing = 4;
-    public int maxStarsPerRing = 8;
+    public int minStarsPerRing = 2;
+    public int maxStarsPerRing = 5;
     public float baseRingSpacing = 100f;
-    public int ringCount = 5; //maybe change when upgraded
+    public int ringCount = 2; //maybe change when upgraded
     public float minStarSpacing = 50f;
     private List<Vector2> starPositions = new List<Vector2>();
     int seed = 1; //possible option to change seed in menu. save seed in files
-   
 
+    private const string RingBonusKey = "RingCountBonus";
     void Start()
     {
         if (seed == 1) //default meaning new save, save should update seed before this line
@@ -35,6 +35,8 @@ public class Spawn_Galaxy : MonoBehaviour, ISaveable
             tempHome.transform.position = Vector3.zero;
             homeStar = tempHome.transform;
         }
+
+        ringCount += PlayerPrefs.GetInt(RingBonusKey, 0);
 
         for (int ring = 1; ring <= ringCount; ring++)
         {
@@ -173,4 +175,11 @@ public class Spawn_Galaxy : MonoBehaviour, ISaveable
         seed = data.galaxySeed;
         //calld by gamemanager before launch 
     }
+
+    public void IncreaseRingCount(int amount)
+    {
+        ringCount += amount;
+        Debug.Log("Ring count increased to: " + ringCount);
+    }
+
 }

@@ -12,10 +12,21 @@ public class Movement_Script : MonoBehaviour
 
 
     private Rigidbody2D rb;
-    
+
+    private const string ThrustBonusKey = "ThrustBonus";
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // apply saved bonus from the upgrade scene
+        float savedBonus = PlayerPrefs.GetFloat(ThrustBonusKey, 0f);
+        float slowDownBonus = PlayerPrefs.GetFloat("SlowDownBonus", 0f);
+
+        thrustForce += savedBonus;
+        slowDownRate += slowDownBonus;
+
+        Debug.Log($"Applied saved thrust bonus {savedBonus}. Final thrustForce = {thrustForce}");
     }
 
     
@@ -57,5 +68,5 @@ public class Movement_Script : MonoBehaviour
             }
         }
         
-    }
+    } 
 }

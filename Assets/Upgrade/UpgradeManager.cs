@@ -27,6 +27,7 @@ public class UpgradeManager : MonoBehaviour
     private const string RingLevelKey = "RingLevel";
     private const string RingBonusKey = "RingCountBonus";
 
+
     void Start()
     {
         RefreshUI();

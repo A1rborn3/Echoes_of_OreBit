@@ -1672,7 +1672,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Upgrade
+  m_text: Galaxy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -2332,7 +2332,7 @@ GameObject:
   - component: {fileID: 1877839609}
   - component: {fileID: 1877839608}
   m_Layer: 5
-  m_Name: ButtonTwo
+  m_Name: GalaxyUpgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2401,7 +2401,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1877839609}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1925274816}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: UpgradeRingCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1877839609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2571,7 +2583,11 @@ MonoBehaviour:
   buttonOne: {fileID: 647806023}
   thrustAddPerClick: 20
   slowDownAddPerClick: 20
-  maxLevel: 3
+  thrustMaxLevel: 3
+  levelTextTwo: {fileID: 461817299}
+  buttonTwo: {fileID: 1877839608}
+  ringAddPerClick: 2
+  ringMaxLevel: 3
 --- !u!1 &2095983641
 GameObject:
   m_ObjectHideFlags: 0

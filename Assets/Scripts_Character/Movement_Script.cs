@@ -28,6 +28,8 @@ public class Movement_Script : MonoBehaviour
         // Gradually slow velocity to zero
         rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, AmbiantslowDownRate * Time.fixedDeltaTime);
 
+
+
         // Gradually slow angular velocity to zero
         rb.angularVelocity = Mathf.MoveTowards(rb.angularVelocity, 0f, AmbiantslowDownRotationRate * Time.fixedDeltaTime);
     }

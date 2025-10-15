@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -406,8 +407,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 520513864}
-  smoothSpeed: 5
+  shipMovement: {fileID: 520513865}
   offset: {x: 0, y: 0, z: -10}
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe0379b8fcf3d04088ce0b4b6b2adeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRb: {fileID: 520513866}
+  shipMovement: {fileID: 520513865}
+  cam: {fileID: 519420031}
+  baseSize: 20
+  maxSizeMultiplier: 2
+  zoomSpeed: 2
 --- !u!1 &520513862
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,8 +956,8 @@ Transform:
   m_GameObject: {fileID: 801013119}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8, y: -3.6, z: 10}
-  m_LocalScale: {x: 116.55232, y: 69.960526, z: 0.020287685}
+  m_LocalPosition: {x: -0, y: -0.3, z: 10}
+  m_LocalScale: {x: 153.52405, y: 92.152794, z: 0.026723169}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -969,7 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 519420032}
-  smoothSpeed: 5
+  shipMovement: {fileID: 520513865}
   offset: {x: 0, y: 0, z: 10}
 --- !u!114 &801013126
 MonoBehaviour:

@@ -103,6 +103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Level_test
+  travelOverlay: {fileID: 1348172482333286226, guid: a9c3c3ee42d689645a0337072f80a848, type: 3}
+  systemInfoText: {fileID: 0}
+  travelButton: {fileID: 0}
 --- !u!58 &5131570745698188666
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -154,3 +157,5 @@ MonoBehaviour:
   System_Ring: 0
   Seed: 0
   System_name: 
+  Star_pos: {x: 0, y: 0}
+  DistanceFromPlayer: 0

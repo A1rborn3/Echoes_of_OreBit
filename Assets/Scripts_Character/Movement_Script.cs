@@ -21,9 +21,6 @@ public class Movement_Script : MonoBehaviour
     
     void Update()
     {
-        // Rotate the ship
-        float rotationInput = -Input.GetAxis("Horizontal"); // A = -1, D = 1
-        transform.Rotate(0, 0, rotationInput * rotationSpeed * Time.deltaTime);
 
         // Gradually slow velocity to zero
         rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, AmbiantslowDownRate * Time.fixedDeltaTime);
@@ -38,7 +35,10 @@ public class Movement_Script : MonoBehaviour
     {
 
             // Normal thrust input
-            float thrustInput = Input.GetAxis("Vertical"); // W = 1, S = -1
+        float thrustInput = Input.GetAxis("Vertical"); // W = 1, S = -1
+        float rotationInput = -Input.GetAxis("Horizontal"); // A = -1, D = 1
+        rb.MoveRotation(rb.rotation + rotationInput * rotationSpeed * Time.fixedDeltaTime);
+
         if (thrustInput < 0)
         {
             // Gradually slow velocity to zero

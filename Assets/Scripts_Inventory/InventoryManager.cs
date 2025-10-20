@@ -1,11 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class InventoryItem
+{
+    public string itemName;
+    public int count;
+
+    public InventoryItem(string name, int count)
+    {
+        itemName = name;
+        this.count = count;
+    }
+}
+
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
-    public List<string> items = new List<string>();
+    
+    private Dictionary<string, InventoryItem> itemDictionary = new Dictionary<string, InventoryItem>();
     public int credits;
 
     private void Awake()
@@ -21,21 +35,47 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddItem(string itemName)
+    
+    public void AddItem(string itemName, int amount = 1)
     {
-        items.Add(itemName);
-        Debug.Log($"Added {itemName} to inventory");
+        if (itemDictionary.ContainsKey(itemName))
+        {
+            itemDictionary[itemName].count += amount;
+        }
+        else
+        {
+            itemDictionary[itemName] = new InventoryItem(itemName, amount);
+        }
+
+        Debug.Log($"Added {amount}x {itemName} to inventory (Total: {itemDictionary[itemName].count})");
     }
 
-    public void RemoveItem(string itemName)
+    
+    public void RemoveItem(string itemName, int amount = 1)
     {
-        if (items.Contains(itemName))
+        if (itemDictionary.ContainsKey(itemName))
         {
-            items.Remove(itemName);
-            Debug.Log($"Removed {itemName} from inventory");
+            itemDictionary[itemName].count -= amount;
+
+            if (itemDictionary[itemName].count <= 0)
+            {
+                itemDictionary.Remove(itemName);
+                Debug.Log($"Removed all of {itemName} from inventory");
+            }
+            else
+            {
+                Debug.Log($"Removed {amount}x {itemName}. Remaining: {itemDictionary[itemName].count}");
+            }
         }
     }
 
+    
+    public int GetItemCount(string itemName)
+    {
+        return itemDictionary.ContainsKey(itemName) ? itemDictionary[itemName].count : 0;
+    }
+
+    
     public void AddCredits(int amount)
     {
         credits += amount;
@@ -55,22 +95,42 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    
     public InventoryData GetInventoryData()
     {
         InventoryData data = new InventoryData();
-        data.items = new List<string>(items);
+        data.items = new List<string>();
+        data.itemCounts = new List<int>();
         data.Credits = credits;
+
+        foreach (var pair in itemDictionary)
+        {
+            data.items.Add(pair.Key);
+            data.itemCounts.Add(pair.Value.count);
+        }
+
         return data;
     }
 
+    
     public void LoadInventoryData(InventoryData data)
     {
-        items = new List<string>(data.items);
+        itemDictionary.Clear();
+
+        for (int i = 0; i < data.items.Count; i++)
+        {
+            string itemName = data.items[i];
+            int count = data.itemCounts[i];
+            itemDictionary[itemName] = new InventoryItem(itemName, count);
+        }
+
         credits = data.Credits;
         Debug.Log("Inventory loaded successfully");
     }
 
-
-
-
+    
+    public IEnumerable<InventoryItem> GetAllItems()
+    {
+        return itemDictionary.Values;
+    }
 }

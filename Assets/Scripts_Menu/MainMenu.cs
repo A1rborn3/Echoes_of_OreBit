@@ -16,8 +16,8 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void SetVolume(float volume)
+    public void SetMasterVolume(float volumeDb)
     {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat("MasterVolume", volumeDb);
     }
 }

@@ -29,6 +29,8 @@ public class Mining_Laser : MonoBehaviour
     {
         GameObject laser = Instantiate(laserPrefab, Player.position, Player.rotation);
 
+        AudioManager.Instance?.PlaySFX("laser_shoot");
+
         Collider2D playerCollider = Player.GetComponent<Collider2D>();
         Collider2D[] laserCollider = laser.GetComponentsInChildren<Collider2D>();
 

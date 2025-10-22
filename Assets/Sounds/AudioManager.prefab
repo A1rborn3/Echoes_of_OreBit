@@ -48,4 +48,8 @@ MonoBehaviour:
   musicGroup: {fileID: -5968969379771456469, guid: 6967fff455d94e848929d140994f05a8, type: 2}
   sfxGroup: {fileID: 6824431222920227400, guid: 6967fff455d94e848929d140994f05a8, type: 2}
   musicClips: []
-  sfxClips: []
+  sfxClips:
+  - key: laser_shoot
+    clip: {fileID: 8300000, guid: 9eec85712ff51fa4ebbed04903c550c7, type: 3}
+    volume: 1
+    loop: 0

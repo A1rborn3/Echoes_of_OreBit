@@ -677,6 +677,7 @@ GameObject:
   - component: {fileID: 520513866}
   - component: {fileID: 520513867}
   - component: {fileID: 520513868}
+  - component: {fileID: 520513869}
   m_Layer: 0
   m_Name: PlayerMain
   m_TagString: Player
@@ -949,6 +950,27 @@ PolygonCollider2D:
       - {x: -1.1694661, y: -2.7960203}
       - {x: -1.0480583, y: -2.8141756}
   m_UseDelaunayMesh: 0
+--- !u!114 &520513869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520513862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e091676ad89fca04589a4945af8794e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 6967fff455d94e848929d140994f05a8, type: 2}
+  musicGroup: {fileID: -5968969379771456469, guid: 6967fff455d94e848929d140994f05a8, type: 2}
+  sfxGroup: {fileID: 6824431222920227400, guid: 6967fff455d94e848929d140994f05a8, type: 2}
+  musicClips: []
+  sfxClips:
+  - key: laser_shoot
+    clip: {fileID: 8300000, guid: 9eec85712ff51fa4ebbed04903c550c7, type: 3}
+    volume: 1
+    loop: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

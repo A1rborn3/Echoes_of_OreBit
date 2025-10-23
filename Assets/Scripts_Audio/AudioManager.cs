@@ -3,6 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+public class KeySoundTrigger : MonoBehaviour
+{
+    public string sfxKey = "laser_shoot";
+    public KeyCode triggerKey = KeyCode.Space;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(triggerKey))
+        AudioManager.Instance?.PlaySFX(sfxKey);
+    }
+}
+
+
 [Serializable]
 public class NamedClip
 {
@@ -87,7 +100,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void SetMasterVolumeDb(float db) => audioMixer?.SetFloat("Master Volume", db);
+    public void SetMasterVolumeDb(float db) => audioMixer?.SetFloat("MasterVolume", db);
     public void SetMusicVolumeDb(float db) => audioMixer?.SetFloat("MusicVolume", db);
     public void SetSFXVolumeDb(float db) => audioMixer?.SetFloat("SFXVolume", db);
 

@@ -1,29 +1,38 @@
 using System.Net.NetworkInformation;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StarClickScript : MonoBehaviour
 {
-    public string sceneToLoad = "Level_test"; // name of the scene to load
+    public string sceneToLoad = "Level_test";
+    private StarUIManager uiManagerScript;
+
+    void Start()
+    {
+
+        uiManagerScript = Object.FindFirstObjectByType<StarUIManager>();
+        if (uiManagerScript == null)
+            Debug.LogWarning("UI Manager not found in scene!");
+    }
 
     void OnMouseDown()
     {
-        System_data data = GetComponent<System_data>();
-        if (data == null) data = GetComponentInParent<System_data>();
 
-        if (data != null)
+        System_data data = GetComponent<System_data>();
+        if (data == null)
+            data = GetComponentInParent<System_data>();
+
+        if (data != null && uiManagerScript != null)
         {
-            Data_Transfer.System_ring = data.System_Ring;  // assuming System_Ring is the variable in System_data
-            Data_Transfer.Star_name = gameObject.name;
+            uiManagerScript.ShowStarOverlay(data, sceneToLoad);
         }
         else
         {
-            Debug.LogWarning("System_data component not found!");
+            Debug.LogWarning("System_data or UI Manager not found!");
         }
-
-        // This gets called when the object is clicked
-        Debug.Log($"{gameObject.name} clicked. Loading {sceneToLoad}...");
-        SceneManager.LoadScene(sceneToLoad);
+        
     }
 }

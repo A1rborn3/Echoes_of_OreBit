@@ -12,21 +12,31 @@ public class Movement_Script : MonoBehaviour
 
 
     private Rigidbody2D rb;
-    
+
+    private const string ThrustBonusKey = "ThrustBonus";
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // apply saved bonus from the upgrade scene
+        float savedBonus = PlayerPrefs.GetFloat(ThrustBonusKey, 0f);
+        float slowDownBonus = PlayerPrefs.GetFloat("SlowDownBonus", 0f);
+
+        thrustForce += savedBonus;
+        slowDownRate += slowDownBonus;
+
+        Debug.Log($"Applied saved thrust bonus {savedBonus}. Final thrustForce = {thrustForce}");
     }
 
     
     void Update()
     {
-        // Rotate the ship
-        float rotationInput = -Input.GetAxis("Horizontal"); // A = -1, D = 1
-        transform.Rotate(0, 0, rotationInput * rotationSpeed * Time.deltaTime);
 
         // Gradually slow velocity to zero
         rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, AmbiantslowDownRate * Time.fixedDeltaTime);
+
+
 
         // Gradually slow angular velocity to zero
         rb.angularVelocity = Mathf.MoveTowards(rb.angularVelocity, 0f, AmbiantslowDownRotationRate * Time.fixedDeltaTime);
@@ -36,7 +46,10 @@ public class Movement_Script : MonoBehaviour
     {
 
             // Normal thrust input
-            float thrustInput = Input.GetAxis("Vertical"); // W = 1, S = -1
+        float thrustInput = Input.GetAxis("Vertical"); // W = 1, S = -1
+        float rotationInput = -Input.GetAxis("Horizontal"); // A = -1, D = 1
+        rb.MoveRotation(rb.rotation + rotationInput * rotationSpeed * Time.fixedDeltaTime);
+
         if (thrustInput < 0)
         {
             // Gradually slow velocity to zero
@@ -57,5 +70,5 @@ public class Movement_Script : MonoBehaviour
             }
         }
         
-    }
+    } 
 }

@@ -2,17 +2,11 @@ Make more memory safe, remove old objects in favour of new with a hard limit for
 
 make diffrent kinds and have them randomise
 
-fix ship speeding and glitching issues --done
 
-make low chance to get clusters and higher chance to get just single peices --done
 
 find a way to do planets and astroids (maybe bigger chunks?, astroids take up multiple chunks?)
 
 make paralax effect in back ground
-
-make planets over write multi chunks
-
-save locations (later)
 
 make navigation to them
 

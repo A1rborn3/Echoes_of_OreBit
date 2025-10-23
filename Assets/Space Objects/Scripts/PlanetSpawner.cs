@@ -14,11 +14,15 @@ public class PlanetSpawner : MonoBehaviour
     public Transform player;
     private Vector2 starPosition;
     public int SystemRing = Data_Transfer.System_ring; // this is what wil determand the reasorces // ie 1= shit reasorces 2 = less shit 3 = moderate ect ect
+    
 
     private List<Vector2> planetPositions = new List<Vector2>();
 
     void Start()
     {
+        int SystemSeed = Data_Transfer.current_star;
+        Debug.Log("System seed = " + SystemSeed);
+        Random.InitState(SystemSeed);
         SpawnStar();
         SpawnPlanets();
         

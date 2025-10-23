@@ -1,11 +1,6 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
 
 public class Spawn_Galaxy : MonoBehaviour, ISaveable
 {
@@ -137,7 +132,7 @@ public class Spawn_Galaxy : MonoBehaviour, ISaveable
         }
     }
 
-    private void Distance_Update()
+    public void Distance_Update()
     {
         string starName = Data_Transfer.Star_name;
         GameObject currentStar = GameObject.Find(starName);
@@ -169,10 +164,20 @@ public class Spawn_Galaxy : MonoBehaviour, ISaveable
     public void Save(SaveData data)
     {
         data.galaxySeed = seed;  //called on close
-    }
+        data.current_fuel_ammount = Data_Transfer.current_fuel_ammount;
+        data.current_fuel_capacity = Data_Transfer.current_fuel_capacity;
+        data.Star_name = Data_Transfer.Star_name;
+        data.System_ring = Data_Transfer.System_ring;
+        data.current_star = Data_Transfer.current_star;
+}
     public void Load(SaveData data)
     {
         seed = data.galaxySeed;
+        Data_Transfer.current_fuel_ammount = data.current_fuel_ammount;
+        Data_Transfer.current_fuel_capacity = data.current_fuel_capacity;
+        Data_Transfer.Star_name = data.Star_name;
+        Data_Transfer.System_ring = data.System_ring;
+        Data_Transfer.current_star = data.current_star;
         //calld by gamemanager before launch 
     }
 

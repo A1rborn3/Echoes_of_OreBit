@@ -27,6 +27,21 @@ public class Mining_Laser : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(laserPrefab, Player.position, Player.rotation);
+        GameObject laser = Instantiate(laserPrefab, Player.position, Player.rotation);
+
+        AudioManager.Instance?.PlaySFX("laser_shoot");
+
+        Collider2D playerCollider = Player.GetComponent<Collider2D>();
+        Collider2D[] laserCollider = laser.GetComponentsInChildren<Collider2D>();
+
+        //Ignore collision between the ship collider and the laser collider
+        
+        foreach (var lc in laserCollider) if (lc != null && playerCollider != null)
+            {
+                Physics2D.IgnoreCollision(lc, playerCollider);
+                lc.enabled = true;
+
+            }
     }
 }
+

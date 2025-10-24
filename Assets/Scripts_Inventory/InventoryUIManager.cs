@@ -34,6 +34,7 @@ public class InventoryUIManager : MonoBehaviour
 
             itemName = itemName.Split('(')[0]; //the objects say (clone) at the end so gotta remove it
 
+
             GameObject slot = Instantiate(slotPrefab, slotContainer);
 
 

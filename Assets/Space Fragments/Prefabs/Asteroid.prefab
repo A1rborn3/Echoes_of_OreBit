@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1943092416616558658}
   - component: {fileID: 6687753107782162117}
   - component: {fileID: -9125862322151555764}
+  - component: {fileID: 743003047971333417}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -119,7 +120,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -152,3 +153,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &743003047971333417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4316924198507631525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdd98fbfee0124043935f160933c561c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceIdOverride: 
+  amount: 1
+  rotateSpeed: 45

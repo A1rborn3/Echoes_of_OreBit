@@ -25,12 +25,23 @@ namespace Fragments.Runtime
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            var inv = other.GetComponentInParent<IInventory>();
-            if (inv == null) return;
+            // Only trigger when the player touches it (optional but recommended)
+            if (!other.CompareTag("Player")) return;
 
+            // Use the singleton InventoryManager
+            var inv = InventoryManager.Instance;
+            if (inv == null)
+            {
+                Debug.LogWarning("No InventoryManager instance found in scene!");
+                return;
+            }
+
+            // Determine item ID (either override or prefab name)
             string id = string.IsNullOrWhiteSpace(resourceIdOverride) ? gameObject.name : resourceIdOverride;
-            if (inv.TryAdd(id, amount))
-                Destroy(gameObject);
+
+            // Add item and destroy pickup
+            inv.AddItem(id, amount);
+            Destroy(gameObject);
         }
     }
 }

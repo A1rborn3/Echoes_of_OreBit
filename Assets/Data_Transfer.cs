@@ -7,7 +7,7 @@ public static class Data_Transfer
     public static string Star_name;
     public static int System_ring;
     public static int current_star; //seed of the curently visited star. home base == 0000 as the ring count starts at 1
-    public static int current_fuel_ammount;
+    public static int current_fuel_ammount = 999;
     public static int current_fuel_capacity; //should remove when updates handle this
 
 }

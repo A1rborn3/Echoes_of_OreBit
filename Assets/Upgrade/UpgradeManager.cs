@@ -27,6 +27,8 @@ public class UpgradeManager : MonoBehaviour
     private const string RingLevelKey = "RingLevel";
     private const string RingBonusKey = "RingCountBonus";
 
+    public GameObject fueltxt;
+
 
     void Start()
     {
@@ -80,6 +82,13 @@ public class UpgradeManager : MonoBehaviour
         RefreshUI();
     }
 
+    public void Refuel()
+    {
+        Data_Transfer.current_fuel_ammount = 200;
+
+        RefreshUI();
+    }
+
 
     public void ResetAll() 
     {
@@ -105,6 +114,9 @@ public class UpgradeManager : MonoBehaviour
         int rLevel = PlayerPrefs.GetInt(RingLevelKey, 0);
         if (levelTextTwo) levelTextTwo.text = $"Level {rLevel}";
         if (buttonTwo) buttonTwo.interactable = rLevel < ringMaxLevel;
+
+        TextMeshProUGUI text = fueltxt.GetComponentInChildren<TextMeshProUGUI>();
+        text.text = $"fuel = " + Data_Transfer.current_fuel_ammount;
     }
 
 }

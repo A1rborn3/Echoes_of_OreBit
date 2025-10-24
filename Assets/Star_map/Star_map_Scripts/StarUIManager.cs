@@ -20,7 +20,11 @@ public class StarUIManager : MonoBehaviour
     void Start()
     {
         //for testing purposes
-        Data_Transfer.current_fuel_ammount = 200;
+        if (Data_Transfer.current_fuel_ammount == 999) //default ammount
+        {
+            Data_Transfer.current_fuel_ammount = 200;
+        }
+            
         if (travelOverlay != null)
             travelOverlay.SetActive(false); // hide overlay at start
 
@@ -68,6 +72,8 @@ public class StarUIManager : MonoBehaviour
             Data_Transfer.System_ring = selectedStarData.System_Ring;
             Data_Transfer.Star_name = selectedStarData.name;
             Data_Transfer.current_star = selectedStarData.Seed;
+            Data_Transfer.current_fuel_ammount -= fuel_cost;
+            Debug.Log(Data_Transfer.current_fuel_ammount);
 
             Debug.Log($"Traveling to {selectedStarData.name}, loading {sceneToLoad}...");
             SceneManager.LoadScene(sceneToLoad);

@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
 namespace Fragments.Runtime
 {
-    [RequireComponent(typeof(Health2D))]
+    [RequireComponent(typeof(Astroid))]
     public class DropOnDestroy2D : MonoBehaviour
     {
         [Header("Refs")]
@@ -13,25 +14,41 @@ namespace Fragments.Runtime
         [Header("Drop Rolls")]
         public int rolls = 3;               // how many ores spawns
         public float scatterRadius = 0.6f;  //radius after destoryed
-        public float impulse = 2f;   
+        public float impulse = 2f;
 
-        Health2D _health;
+        Astroid _asteroid;
 
+        [System.Obsolete]
         void Awake()
         {
-            _health = GetComponent<Health2D>();
-            _health.OnDied.AddListener(SpawnDropsAndDestroy);
+            _asteroid = GetComponent<Astroid>();
+
+            if (_asteroid == null)
+            {
+                Debug.LogError("No Astroid component found!");
+                return;
+            }
+
+            // Automatically find the ResourceDB if not assigned
+            if (db == null)
+            {
+                db = FindObjectOfType<ResourceDB>();
+                if (db == null)
+                    Debug.LogWarning("No ResourceDB found in scene. Asteroid will not drop resources!");
+            }
+
+            _asteroid.OnDied.AddListener(SpawnDropsAndDestroy);
         }
 
         void SpawnDropsAndDestroy()
         {
+            Debug.Log("invoked spawns");
             if (db != null)
             {
                 var chosen = RollResources(db.All, rolls);
                 foreach (var res in chosen)
                     SpawnPickup(res.prefab);
             }
-            Destroy(gameObject);
         }
 
         List<ResourceInfo> RollResources(ResourceInfo[] all, int count)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Astroid : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class Astroid : MonoBehaviour
     public int maxHealth = 100;
     private int currentHealth;
     public Vector2 Pos;
-
+    public UnityEvent OnDied = new UnityEvent();
     void Start()
     {
         currentHealth = maxHealth;
@@ -24,6 +25,7 @@ public class Astroid : MonoBehaviour
 
     void Die()
     {
+        OnDied.Invoke();
         Destroy(gameObject);
     }
 

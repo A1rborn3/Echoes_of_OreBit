@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -8803157721998769119}
   - component: {fileID: 6498839861868506227}
   - component: {fileID: -8402284205516306047}
+  - component: {fileID: 1756201971003928453}
   m_Layer: 0
   m_Name: Test_Sprite
   m_TagString: Untagged
@@ -183,3 +184,22 @@ MonoBehaviour:
   asteroidName: 
   maxHealth: 100
   Pos: {x: 0, y: 0}
+  OnDied:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1756201971003928453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8442909264848156617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c93cf4b64048c54288b0d0c703dca68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  db: {fileID: 0}
+  rolls: 3
+  scatterRadius: 0.6
+  impulse: 2

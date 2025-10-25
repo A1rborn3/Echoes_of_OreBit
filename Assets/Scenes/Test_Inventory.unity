@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866d95a9a05dfa549b46d3ad79d58254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
   credits: 0
+  priceDB: {fileID: 0}
 --- !u!4 &101567801
 Transform:
   m_ObjectHideFlags: 0

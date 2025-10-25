@@ -5,8 +5,14 @@ using TMPro;
 public class UpgradeManager : MonoBehaviour
 {
     [Header("Thrust Upgrade (ButtonOne)")]
-    [SerializeField] TMP_Text levelTextOne;     
-    [SerializeField] Button buttonOne;         
+    [SerializeField] TMP_Text levelTextOne;
+    [SerializeField] Button buttonOne;    
+
+
+    //added cost for upgrade
+    [SerializeField] private int upgradeCost = 100; // upgrade cost per click
+    [SerializeField] private int refuelCost = 50;  // refuel cost per click
+    [SerializeField] private int ringUpgradeCost = 100; //ring upg cost
 
     [SerializeField] float thrustAddPerClick = 20f;    // thrust increase per click
     [SerializeField] float slowDownAddPerClick = 20f;  // slowDown increase per click
@@ -37,6 +43,14 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeThrustAndSlowDown()
     {
+        if (InventoryManager.Instance.credits < upgradeCost)
+        {
+            Debug.LogWarning("Not enough credits to upgrade!");
+            return;
+        }
+
+        InventoryManager.Instance.SpendCredits(upgradeCost); // added for cost
+
         int level = PlayerPrefs.GetInt(ThrustLevelKey, 0);
 
         if (level >= thrustMaxLevel) return;   // stop if max level reached
@@ -64,6 +78,15 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeRingCount()
     {
+        // added for cost
+        // spend credits before applying upgrade
+        if (InventoryManager.Instance.credits < ringUpgradeCost)
+        {
+            Debug.LogWarning("Not enough credits to upgrade ring count!");
+            return;
+        }
+        InventoryManager.Instance.SpendCredits(ringUpgradeCost);
+    
         int level = PlayerPrefs.GetInt(RingLevelKey, 0);
         if (level >= ringMaxLevel) return;
 
@@ -84,6 +107,14 @@ public class UpgradeManager : MonoBehaviour
 
     public void Refuel()
     {
+        if (InventoryManager.Instance.credits < refuelCost)
+        {
+            Debug.LogWarning("Not enough credits to refuel!");
+            return;
+        }
+
+        InventoryManager.Instance.SpendCredits(refuelCost); // added above
+        
         Data_Transfer.current_fuel_ammount = 200;
 
         RefreshUI();

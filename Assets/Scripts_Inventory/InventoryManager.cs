@@ -128,9 +128,62 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("Inventory loaded successfully");
     }
 
-    
+
     public IEnumerable<InventoryItem> GetAllItems()
     {
         return itemDictionary.Values;
+    }
+
+    // added below for cost
+    
+    public int GetItemSellPrice(string itemName)
+    {
+        if (PriceManager.Instance != null)
+            return PriceManager.Instance.GetPrice(itemName);
+        return 0;
+    }
+
+    public int SellItem(string itemName, int amount)
+    {
+        int owned = GetItemCount(itemName);
+        if (owned <= 0) return 0;
+
+        int sellAmount = Mathf.Min(owned, amount);
+        int price = GetItemSellPrice(itemName);
+        if (price <= 0) return 0;
+
+        RemoveItem(itemName, sellAmount);
+        AddCredits(price * sellAmount);
+
+        Debug.Log($"Sold {sellAmount}x {itemName} for {price * sellAmount} credits.");
+        return price * sellAmount;
+    }
+
+    public int SellAllItems()
+    {
+        int totalEarned = 0;
+        List<string> itemNames = new List<string>();
+
+        foreach (var item in itemDictionary.Values)
+            itemNames.Add(item.itemName);
+
+        foreach (var itemName in itemNames)
+        {
+            int count = GetItemCount(itemName);
+            int price = GetItemSellPrice(itemName);
+            if (price > 0 && count > 0)
+            {
+                totalEarned += price * count;
+                RemoveItem(itemName, count);
+            }
+        }
+
+        if (totalEarned > 0)
+        {
+            AddCredits(totalEarned);
+            Debug.Log($"Sold everything for {totalEarned} credits.");
+        }
+
+        return totalEarned;
     }
 }

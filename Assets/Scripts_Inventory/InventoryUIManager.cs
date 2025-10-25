@@ -97,4 +97,11 @@ public class InventoryUIManager : MonoBehaviour
                 RefreshUI();
         }
     }
+
+    public void SellAllButton()
+    {
+        int earned = InventoryManager.Instance.SellAllItems();
+        Debug.Log($"Sold all for {earned} credits.");
+        RefreshUI();
+    }
 }

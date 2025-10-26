@@ -12,9 +12,9 @@ public class StarUIManager : MonoBehaviour
     public TextMeshProUGUI systemInfoText;    
     public Button travelButton;
     public TextMeshProUGUI ButtonLabel;
-    int fuel_cost;
+    public int fuel_cost;
 
-    private System_data selectedStarData;
+    public System_data selectedStarData;
     private string sceneToLoad;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -63,7 +63,7 @@ public class StarUIManager : MonoBehaviour
 
     private void OnTravelConfirmed()
     {
-        if (selectedStarData != null && fuel_cost <= Data_Transfer.current_fuel_ammount)
+        if (CanTravel())
         {
             Data_Transfer.System_ring = selectedStarData.System_Ring;
             Data_Transfer.Star_name = selectedStarData.name;
@@ -74,4 +74,8 @@ public class StarUIManager : MonoBehaviour
         }
     }
 
+    public bool CanTravel()
+{
+    return selectedStarData != null && fuel_cost <= Data_Transfer.current_fuel_ammount;
+}
 }

@@ -229,7 +229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchoredPosition: {x: -100, y: -10}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &152873170
@@ -383,8 +383,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9, y: -0.5}
-  m_SizeDelta: {x: -28, y: -3}
+  m_AnchoredPosition: {x: -27.5, y: -0.5}
+  m_SizeDelta: {x: 45, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &277580808
 MonoBehaviour:
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2122,7 +2122,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -200, y: -60}
-  m_SizeDelta: {x: 300, y: 60}
+  m_SizeDelta: {x: 400, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1596638796
 MonoBehaviour:
@@ -2568,6 +2568,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1742049736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1644352845653371631, guid: aaa072e4ee82d894ca05dfef2dffb183, type: 3}
+  m_PrefabInstance: {fileID: 2084286892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1742049737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742049736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e225b86365428bf469ddd4377c341420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSFXKey: mouse_click
 --- !u!1 &1807695232
 GameObject:
   m_ObjectHideFlags: 0
@@ -2842,8 +2860,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9, y: -0.5}
-  m_SizeDelta: {x: -28, y: -3}
+  m_AnchoredPosition: {x: -27.5, y: -0.5}
+  m_SizeDelta: {x: 45, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1960034612
 MonoBehaviour:
@@ -2858,7 +2876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3379,9 +3397,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6089307225458036165, guid: aaa072e4ee82d894ca05dfef2dffb183, type: 3}
+      propertyPath: sfxClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6089307225458036165, guid: aaa072e4ee82d894ca05dfef2dffb183, type: 3}
       propertyPath: musicClips.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6089307225458036165, guid: aaa072e4ee82d894ca05dfef2dffb183, type: 3}
+      propertyPath: sfxClips.Array.data[1].key
+      value: mouse_click
+      objectReference: {fileID: 0}
+    - target: {fileID: 6089307225458036165, guid: aaa072e4ee82d894ca05dfef2dffb183, type: 3}
+      propertyPath: sfxClips.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 44803a9af91dc5e48a39a8255e83a6c1, type: 3}
     - target: {fileID: 6089307225458036165, guid: aaa072e4ee82d894ca05dfef2dffb183, type: 3}
       propertyPath: musicClips.Array.data[0].key
       value: menu_bgm
@@ -3407,6 +3437,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6089307225458036165, guid: aaa072e4ee82d894ca05dfef2dffb183, type: 3}
+      propertyPath: sfxClips.Array.data[1].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6089307225458036165, guid: aaa072e4ee82d894ca05dfef2dffb183, type: 3}
       propertyPath: musicClips.Array.data[0].volume
       value: 1
       objectReference: {fileID: 0}
@@ -3417,7 +3451,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1644352845653371631, guid: aaa072e4ee82d894ca05dfef2dffb183, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1742049737}
   m_SourcePrefab: {fileID: 100100000, guid: aaa072e4ee82d894ca05dfef2dffb183, type: 3}
 --- !u!1 &2113055694
 GameObject:
@@ -3454,7 +3491,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchoredPosition: {x: -100, y: -10}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2113055696
